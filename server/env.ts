@@ -26,6 +26,7 @@ const env = cleanEnv(process.env, {
   DISALLOW_ANONYMOUS_LINKS: bool({ default: false }),
   DISALLOW_REGISTRATION: bool({ default: false }),
   CUSTOM_DOMAIN_USE_HTTPS: bool({ default: false }),
+  OPTIONAL_EMAIL_VERIFICATION: bool({ default: false }),
   JWT_SECRET: str(),
   ADMIN_EMAILS: str({ default: "" }),
   RECAPTCHA_SITE_KEY: str({ default: "" }),

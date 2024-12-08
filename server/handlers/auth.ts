@@ -28,7 +28,7 @@ const authenticate = (
         throw new CustomError(error, 401);
       }
 
-      if (user && isStrict && !user.verified) {
+      if (user && isStrict && !user.verified && !env.OPTIONAL_EMAIL_VERIFICATION) {
         throw new CustomError(
           "Your email address is not verified. " +
             "Click on signup to get the verification link again.",
@@ -120,7 +120,7 @@ export const signup: Handler = async (req, res) => {
     req.user
   );
 
-  if (!process.env.MAIL_HOST) {
+  if (!env.MAIL_HOST) {
     return res
       .status(201)
       .send({ message: "Your account has been created successfully." });
