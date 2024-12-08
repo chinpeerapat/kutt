@@ -86,9 +86,9 @@
     "url-regex-safe": "^3.0.0",
     "use-media": "^1.4.0",
     "useragent": "^2.2.1",
-    "uuid": "^9.0.0",
+    "uuid": "git+https://github.com/uuidjs/uuid.git#v9.0.0",
     "winston": "^3.3.3",
-    "winston-daily-rotate-file": "^4.7.1"
+    "winston-daily-rotate-file": "git+https://github.com/winstonjs/winston-daily-rotate-file.git#v4.7.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
