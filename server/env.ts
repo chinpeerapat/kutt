@@ -32,12 +32,12 @@ const env = cleanEnv(process.env, {
   RECAPTCHA_SITE_KEY: str({ default: "" }),
   RECAPTCHA_SECRET_KEY: str({ default: "" }),
   GOOGLE_SAFE_BROWSING_KEY: str({ default: "" }),
-  MAIL_HOST: str(),
-  MAIL_PORT: num(),
+  MAIL_HOST: str({ default: "" }),
+  MAIL_PORT: num({ default: 0 }),
   MAIL_SECURE: bool({ default: false }),
-  MAIL_USER: str(),
+  MAIL_USER: str({ default: "" }),
   MAIL_FROM: str({ default: "", example: "Kutt <support@kutt.it>" }),
-  MAIL_PASSWORD: str(),
+  MAIL_PASSWORD: str({ default: "" }),
   REPORT_EMAIL: str({ default: "" }),
   CONTACT_EMAIL: str({ default: "" })
 });

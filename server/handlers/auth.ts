@@ -115,21 +115,25 @@ export const signup: Handler = async (req, res) => {
   const salt = await bcrypt.genSalt(12);
   const password = await bcrypt.hash(req.body.password, salt);
 
-  const user = await query.user.add(
-    { email: req.body.email, password },
-    req.user
-  );
+  const userData = { 
+    email: req.body.email, 
+    password,
+    verified: env.OPTIONAL_EMAIL_VERIFICATION // Set verified to true if email verification is optional
+  };
 
-  if (!env.MAIL_HOST) {
+  const user = await query.user.add(userData, req.user);
+
+  // Only send verification email if email verification is required and mail host is configured
+  if (!env.OPTIONAL_EMAIL_VERIFICATION && env.MAIL_HOST) {
+    await mail.verification(user);
     return res
       .status(201)
-      .send({ message: "Your account has been created successfully." });
+      .send({ message: `Verification email has been sent to ${user.email}.` });
   }
-  await mail.verification(user);
 
   return res
     .status(201)
-    .send({ message: `Verification email has been sent to ${user.email}.` });
+    .send({ message: "Your account has been created successfully." });
 };
 
 export const token: Handler = async (req, res) => {
